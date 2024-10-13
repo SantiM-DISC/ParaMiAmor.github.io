@@ -8,18 +8,18 @@ function createCard(index) {
 	let card = document.createElement('div');
 	card.className = 'card';
 	card.innerHTML = `
-		<h2>Card Title ${index}</h2>
-		<a href="cards/card${index}.html">Open Card</a>
+	  <h2>Card Title ${index}</h2>
+	  <a href="#">Open Card</a>
 	`;
 	return card;
-}
+  }
 
 // Create 100 cards and add them to the container
 for (let i = 0; i < 100; i++) {
 	let card = createCard(i + 1);
 	document.querySelector('.container').appendChild(card);
 	cards.push(card);
-}
+  }
 
 // script.js (continued)
 for (let i = 0; i < 100; i++) {
@@ -124,3 +124,22 @@ let cardContent = `
 	</body>
 	</html>
 `;
+
+for (let i = 0; i < 100; i++) {
+	let card = createCard(i + 1);
+	console.log(`Ruta de la carta ${i + 1}: cards/card${i + 1}.html`);
+	document.querySelector('.container').appendChild(card);
+	cards.push(card);
+  }
+  cards.forEach((card, index) => {
+	card.addEventListener('click', () => {
+	  document.getElementById('modal-title').textContent = `Card ${index + 1}`;
+	  document.getElementById('modal-content').textContent = `Card content ${index + 1}`;
+	  document.getElementById('card-modal').style.display = 'block';
+	});
+  });
+  
+  // Función para cerrar el modal
+  function closeModal() {
+	document.getElementById('card-modal').style.display = 'none';
+  }
