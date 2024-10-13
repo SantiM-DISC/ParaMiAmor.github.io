@@ -1,145 +1,68 @@
 // script.js
 
-// Create an array to store the cards
+// Crear un array para almacenar las tarjetas
 let cards = [];
 
-// Function to create a new card
+// Función para crear una nueva tarjeta
 function createCard(index) {
-	let card = document.createElement('div');
-	card.className = 'card';
-	card.innerHTML = `
-	  <h2>Card Title ${index}</h2>
-	  <a href="#">Open Card</a>
-	`;
-	return card;
-  }
-
-// Create 100 cards and add them to the container
-for (let i = 0; i < 100; i++) {
-	let card = createCard(i + 1);
-	document.querySelector('.container').appendChild(card);
-	cards.push(card);
-  }
-
-// script.js (continued)
-for (let i = 0; i < 100; i++) {
-	let cardContent = `
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>Card ${i + 1}</title>
-			<link rel="stylesheet" href="style.css">
-		</head>
-		<body>
-			<h1>Card ${i + 1}</h1>
-			<p>Card content ${i + 1}</p>
-		</body>
-		</html>
-	`;
-
-	let cardFile = `card${i + 1}.html`;
-	fs.writeFileSync(cardFile, cardContent);
-}
-// Function to make a card editable
-function makeCardEditable(card) {
-	let title = card.querySelector('h2');
-	let content = card.querySelector('p');
-	title.contentEditable = 'true';
-	content.contentEditable = 'true';
+  let card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <h2>Card Title ${index}</h2>
+    <p hidden>Card content ${index}</p>
+    <a href="#" class="open-card">Open Card</a>
+  `;
+  return card;
 }
 
-// Add event listeners to each card to make it editable
-cards.forEach((card) => {
-	card.addEventListener('click', () => {
-		card.querySelector('.card-content').toggleAttribute('hidden');
-	});
+// Crear 100 tarjetas y añadirlas al contenedor
+for (let i = 0; i < 100; i++) {
+  let card = createCard(i + 1);
+  document.querySelector('.container').appendChild(card);
+  cards.push(card);
+}
+
+// Mostrar contenido de la tarjeta en el modal
+cards.forEach((card, index) => {
+  card.querySelector('.open-card').addEventListener('click', (event) => {
+    event.preventDefault(); // Evitar comportamiento predeterminado del enlace
+    document.getElementById('modal-title').textContent = `Card ${index + 1}`;
+    document.getElementById('modal-content').textContent = `Card content ${index + 1}`;
+    document.getElementById('card-modal').style.display = 'block';
+  });
 });
 
-// script.js (continued)
-
-// Function to save the cards
-function saveCards() {
-	let cardData = [];
-	cards.forEach((card) => {
-		let title = card.querySelector('h2').textContent;
-		let content = card.querySelector('p').textContent;
-		cardData.push({ title, content });
-	});
-	localStorage.setItem('cards', JSON.stringify(cardData));
+// Función para cerrar el modal
+function closeModal() {
+  document.getElementById('card-modal').style.display = 'none';
 }
 
-// Add a button to save the cards
+// Añadir botón para guardar las tarjetas
 let saveButton = document.createElement('button');
 saveButton.textContent = 'Save Cards';
 saveButton.addEventListener('click', saveCards);
 document.querySelector('.container').appendChild(saveButton);
 
-// script.js (continued)
-
-// Function to load the saved cards
-function loadCards() {
-	let cardData = JSON.parse(localStorage.getItem('cards'));
-	cardData.forEach((card, index) => {
-		let cardElement = cards[index];
-		cardElement.querySelector('h2').textContent = card.title;
-		cardElement.querySelector('p').textContent = card.content;
-	});
-}
-
-// Load the saved cards when the page loads
-loadCards();
-
-// Create a separate HTML file for each card
-for (let i = 0; i < 100; i++) {
-	let cardContent = `
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>Card ${i + 1}</title>
-			<link rel="stylesheet" href="style.css">
-		</head>
-		<body>
-			<h1>Card ${i + 1}</h1>
-			<p>Card content ${i + 1}</p>
-		</body>
-		</html>
-	`;
-
-	let cardFile = `card${i + 1}.html`;
-	fs.writeFileSync(cardFile, cardContent);
-}
-
-let cardContent = `
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Card ${i + 1}</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<div class="opened-card">
-			<h1>Card ${i + 1}</h1>
-			<textarea id="card-content" style="font-family: Times New Roman; font-size: 18px; width: 80%; height: 300px;"></textarea>
-		</div>
-	</body>
-	</html>
-`;
-
-for (let i = 0; i < 100; i++) {
-	let card = createCard(i + 1);
-	console.log(`Ruta de la carta ${i + 1}: cards/card${i + 1}.html`);
-	document.querySelector('.container').appendChild(card);
-	cards.push(card);
-  }
-  cards.forEach((card, index) => {
-	card.addEventListener('click', () => {
-	  document.getElementById('modal-title').textContent = `Card ${index + 1}`;
-	  document.getElementById('modal-content').textContent = `Card content ${index + 1}`;
-	  document.getElementById('card-modal').style.display = 'block';
-	});
+// Función para guardar las tarjetas
+function saveCards() {
+  let cardData = [];
+  cards.forEach((card) => {
+    let title = card.querySelector('h2').textContent;
+    let content = card.querySelector('p').textContent;
+    cardData.push({ title, content });
   });
-  
-  // Función para cerrar el modal
-  function closeModal() {
-	document.getElementById('card-modal').style.display = 'none';
-  }
+  localStorage.setItem('cards', JSON.stringify(cardData));
+}
+
+// Función para cargar las tarjetas guardadas
+function loadCards() {
+  let cardData = JSON.parse(localStorage.getItem('cards'));
+  cardData.forEach((card, index) => {
+    let cardElement = cards[index];
+    cardElement.querySelector('h2').textContent = card.title;
+    cardElement.querySelector('p').textContent = card.content;
+  });
+}
+
+// Cargar las tarjetas guardadas cuando se carga la página
+loadCards();
