@@ -88,3 +88,39 @@ function loadCards() {
 
 // Load the saved cards when the page loads
 loadCards();
+
+// Create a separate HTML file for each card
+for (let i = 0; i < 100; i++) {
+	let cardContent = `
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Card ${i + 1}</title>
+			<link rel="stylesheet" href="style.css">
+		</head>
+		<body>
+			<h1>Card ${i + 1}</h1>
+			<p>Card content ${i + 1}</p>
+		</body>
+		</html>
+	`;
+
+	let cardFile = `card${i + 1}.html`;
+	fs.writeFileSync(cardFile, cardContent);
+}
+
+let cardContent = `
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Card ${i + 1}</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="opened-card">
+			<h1>Card ${i + 1}</h1>
+			<textarea id="card-content" style="font-family: Times New Roman; font-size: 18px; width: 80%; height: 300px;"></textarea>
+		</div>
+	</body>
+	</html>
+`;
