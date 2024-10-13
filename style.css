@@ -1,3 +1,5 @@
+/* style.css */
+
 body {
 	background-color: #ffff00; /* Yellow background */
 }
@@ -10,4 +12,21 @@ body {
 	border: 1px solid #dddddd; /* Light gray border */
 	border-radius: 10px; /* Rounded corners */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.card {
+	background-color: #ffffff; /* White background for each card */
+	padding: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #dddddd; /* Light gray border */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.card-content {
+	display: none; /* Hide the card content by default */
+}
+
+.card:hover .card-content {
+	display: block; /* Show the card content on hover */
 }

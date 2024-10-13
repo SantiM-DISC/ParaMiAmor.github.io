@@ -7,7 +7,12 @@ let cards = [];
 function createCard() {
 	let card = document.createElement('div');
 	card.className = 'card';
-	card.innerHTML = '<h2>Card Title</h2><p>Card content</p>';
+	card.innerHTML = `
+		<h2>Card Title</h2>
+		<div class="card-content">
+			<p>Card content</p>
+		</div>
+	`;
 	return card;
 }
 
@@ -31,7 +36,7 @@ function makeCardEditable(card) {
 // Add event listeners to each card to make it editable
 cards.forEach((card) => {
 	card.addEventListener('click', () => {
-		makeCardEditable(card);
+		card.querySelector('.card-content').toggleAttribute('hidden');
 	});
 });
 
