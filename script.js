@@ -4,27 +4,42 @@
 let cards = [];
 
 // Function to create a new card
-function createCard() {
+function createCard(index) {
 	let card = document.createElement('div');
 	card.className = 'card';
 	card.innerHTML = `
-		<h2>Card Title</h2>
-		<div class="card-content">
-			<p>Card content</p>
-		</div>
+		<h2>Card Title ${index}</h2>
+		<a href="card${index}.html">Open Card</a>
 	`;
 	return card;
 }
 
 // Create 100 cards and add them to the container
 for (let i = 0; i < 100; i++) {
-	let card = createCard();
+	let card = createCard(i + 1);
 	document.querySelector('.container').appendChild(card);
 	cards.push(card);
 }
 
 // script.js (continued)
+for (let i = 0; i < 100; i++) {
+	let cardContent = `
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Card ${i + 1}</title>
+			<link rel="stylesheet" href="style.css">
+		</head>
+		<body>
+			<h1>Card ${i + 1}</h1>
+			<p>Card content ${i + 1}</p>
+		</body>
+		</html>
+	`;
 
+	let cardFile = `card${i + 1}.html`;
+	fs.writeFileSync(cardFile, cardContent);
+}
 // Function to make a card editable
 function makeCardEditable(card) {
 	let title = card.querySelector('h2');
