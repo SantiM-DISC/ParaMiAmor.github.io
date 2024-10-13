@@ -9,7 +9,7 @@ function createCard(index) {
 	card.className = 'card';
 	card.innerHTML = `
 		<h2>Card Title ${index}</h2>
-		<a href="card${index}.html">Open Card</a>
+		<a href="cards/card${index}.html">Open Card</a>
 	`;
 	return card;
 }
