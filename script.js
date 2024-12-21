@@ -2,7 +2,7 @@
 
 // Create arrays to store the card titles and content
 let cardTitles = [
-  "Card Title 1", "Card Title 2", "Card Title 3", "Card Title 4", "Card Title 5",
+  "Primera vista", "Primer conversación", "Primer contacto", "Card Title 4", "Card Title 5",
   "Card Title 6", "Card Title 7", "Card Title 8", "Card Title 9", "Card Title 10",
   "Card Title 11", "Card Title 12", "Card Title 13", "Card Title 14", "Card Title 15",
   "Card Title 16", "Card Title 17", "Card Title 18", "Card Title 19", "Card Title 20",
