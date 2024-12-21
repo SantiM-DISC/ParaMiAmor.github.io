@@ -1,18 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<title>My Girlfriend's Webpage</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amor eterno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: 200px;
+            height: 250px;
+            margin: 15px;
+            background-color: #ffb6c1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .opened-card {
+            background-color: #ffb6c1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        button {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #saveButton {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
 </head>
 <body>
-	<div class="container">
-		<!-- We'll add the 100 cards here -->
-	</div>
-	<script src="script.js"></script>
-	<div id="card-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); z-index: 1000;">
-		<h1 id="modal-title"></h1>
-		<p id="modal-content"></p>
-		<button onclick="closeModal()">Close</button>
-	  </div>
+    <div id="app"></div>
+    <script src="script.js"></script>
 </body>
 </html>
